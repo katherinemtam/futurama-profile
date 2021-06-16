@@ -9,16 +9,17 @@ describe('profile routes', () => {
   });
 
   test('create a profile for our user via POST', async () => {
+
     const res = await request(app)
       .post('/api/v1/profile')
       .send({
-        name: 'cat',
-        favoriteCharacter: 'hermes'
+        name: 'User',
+        favoriteCharacter: 'Hermes'
       });
 
     expect(res.body).toEqual({
       id:'1',
-      name:'Cat',
+      name:'User',
       favoriteCharacter: 'Hermes',
       tagline: expect.any(String)
     });
