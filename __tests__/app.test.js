@@ -64,4 +64,19 @@ describe('profile routes', () => {
   
     
   });
+ 
+  it('Deletes a profile by id via DELETE', async () => {
+    const quote = await fetchTagline('Fry');
+    const profile = await Profile.createProfile({
+      name: 'User',
+      favoriteCharacter: 'Fry',
+    }, quote.body[0].quote);
+
+    const res = await request(app).delete(`/api/v1/profile/${profile.id}`)
+      .send(profile);
+
+    expect(res.body).toEqual(profile);
+  });
+
+  
 });
